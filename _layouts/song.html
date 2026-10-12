@@ -1,0 +1,46 @@
+---
+layout: default
+---
+{% assign songs = site.songs | sort: "title" %}
+{% assign i = 0 %}
+{% for s in songs %}{% if s.url == page.url %}{% assign i = forloop.index0 %}{% endif %}{% endfor %}
+{% assign prev_i = i | minus: 1 %}
+{% assign next_i = i | plus: 1 %}
+{% assign body = content | strip_html | strip %}
+
+<nav class="top-bar">
+  <a href="{{ '/' | relative_url }}" class="back">← All songs</a>
+  <div class="size-controls" role="group" aria-label="Text size">
+    <button type="button" data-size="-1" aria-label="Smaller text">A−</button>
+    <button type="button" data-size="1" aria-label="Larger text">A+</button>
+  </div>
+</nav>
+
+<article class="song">
+  <header>
+    <h1>{{ page.title }}</h1>
+    {% if page.credit %}<p class="credit">{{ page.credit }}</p>{% endif %}
+  </header>
+
+  {% if body == "" %}
+  <div class="placeholder">
+    <p><strong>Lyrics haven't been added yet.</strong></p>
+    {% if page.source_url %}
+    <p>You can read them on <a href="{{ page.source_url }}" target="_blank" rel="noopener">{{ page.source_name | default: "the official site" }}</a>.</p>
+    {% endif %}
+    <p>To add them here, edit <code>{{ page.path }}</code> in your GitHub repository and paste the lyrics at the bottom of the file.</p>
+    {% if site.github.repository_url %}
+    <p><a class="button" href="{{ site.github.repository_url }}/edit/main/{{ page.path }}" target="_blank" rel="noopener">Add lyrics on GitHub</a></p>
+    {% endif %}
+  </div>
+  {% else %}
+  <div class="lyrics">
+{{ content }}
+  </div>
+  {% endif %}
+</article>
+
+<nav class="prev-next">
+  {% if i > 0 %}{% assign prev = songs[prev_i] %}<a href="{{ prev.url | relative_url }}" class="prev"><span>← Previous</span>{{ prev.title }}</a>{% else %}<span></span>{% endif %}
+  {% if next_i < songs.size %}{% assign next = songs[next_i] %}<a href="{{ next.url | relative_url }}" class="next"><span>Next →</span>{{ next.title }}</a>{% endif %}
+</nav>

@@ -1,0 +1,32 @@
+---
+layout: default
+---
+{% assign songs = site.songs | sort: "title" %}
+<header class="book-title">
+  <h1>{{ site.title }}</h1>
+  <p class="subtitle">{{ songs.size }} songs</p>
+</header>
+
+<div class="search">
+  <label for="search" class="visually-hidden">Search songs</label>
+  <input id="search" type="search" placeholder="Search titles or lyrics" autocomplete="off" autocorrect="off" spellcheck="false">
+</div>
+
+<ol class="song-list" id="song-list">
+  {% for song in songs %}
+  {% assign body = song.content | strip_html | strip %}
+  {% capture haystack %}{{ song.title }} {{ song.credit }} {{ body }}{% endcapture %}
+  <li data-search="{{ haystack | newline_to_br | strip_newlines | replace: "<br />", " " | downcase | escape }}">
+    <a href="{{ song.url | relative_url }}">
+      <span class="num">{{ forloop.index }}</span>
+      <span class="info">
+        <span class="song-title">{{ song.title }}</span>
+        {% if song.credit %}<span class="credit">{{ song.credit }}</span>{% endif %}
+        <span class="match" hidden></span>
+      </span>
+      {% if body == "" %}<span class="tag">add lyrics</span>{% endif %}
+    </a>
+  </li>
+  {% endfor %}
+</ol>
+<p id="no-results" class="no-results" hidden>No songs match “<span id="no-results-term"></span>”.</p>
