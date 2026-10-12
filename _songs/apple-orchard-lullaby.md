@@ -1,21 +1,13 @@
 ---
-title: "Apple Orchard Lullaby"
-credit: "Placeholder song – replace with your own"
+title: "You Are My Sunshine"
+credit: "Folk"
 ---
+You are my sunshine, my sweetest sunshine.
+You make me happy, when skies are gray.
+You'll always know, dear, how much I love you
+'Cause I'll tell you every day!
 
-The apples hang like little moons
-Above the sleepy hill,
-The crickets hum their evening tunes,
-And all the world is still.
-
-> So close your eyes, my apple pie,
-> The stars are coming through,
-> The orchard sings a lullaby
-> For no one else but you.
-
-The wind goes rocking every bough,
-The owl is keeping time,
-The barn cat curls beside the plow
-And dreams in nursery rhyme.
-
-> *(Chorus)*
+And in the night, dear, as you lay sleeping,
+I'll be there just out of sight.
+And when you wake up, I'll be so happy
+To spend the day with my sunshine
